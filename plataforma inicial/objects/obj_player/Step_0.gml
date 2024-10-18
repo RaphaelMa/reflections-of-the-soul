@@ -1,3 +1,5 @@
+controlar()
+
 #region current stats
 
 var _onground = place_meeting(x, y+ groundbuffer, obj_block);
@@ -5,12 +7,10 @@ var _onground = place_meeting(x, y+ groundbuffer, obj_block);
 #endregion
 
 #region inputs
-
-//inputs
 var _key_left = keyboard_check(vk_left);
 var _key_right = keyboard_check(vk_right);
-var _key_jump = keyboard_check_pressed(vk_up);
-var _key_jump_held = keyboard_check(vk_up);
+var _key_jump = keyboard_check_pressed(vk_up) or gamepad_button_check_pressed(global.porta_conectada, gp_face1);
+var _key_jump_held = keyboard_check(vk_up) or gamepad_button_check(global.porta_conectada, gp_face1);
 
 
 var _key_down = keyboard_check(vk_down);
@@ -18,6 +18,7 @@ var _key_down = keyboard_check(vk_down);
 #endregion
 
 #region move
+
 
 //direction
 var _dir = _key_right - _key_left;
@@ -78,6 +79,22 @@ if(place_meeting(x, y+vspd, obj_block)){
 	y = _y;
 	vspd = 0;
 }
+#endregion
+
+ #region animation
+image_speed = 1;
+if(hspd != 0) image_xscale = sign(hspd);
+
+if(!_onground){
+	sprite_index = spr_playerJump;
+} else{
+	if(hspd != 0){
+		sprite_index = spr_playerWalk;
+	}else {
+		image_index = spr_player;
+	}
+}
+
 
 #endregion
 
