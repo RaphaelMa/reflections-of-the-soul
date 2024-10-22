@@ -20,6 +20,19 @@ jumpheight_min = -3;
 
 #endregion
 
+#region sprites
+//sprites
+sprite_idle_normal = spr_player;
+sprite_walk_normal = spr_playerWalk;
+sprite_jump_normal = spr_playerJump;
+
+sprite_idle_invisivel = spr_idlecrow;
+sprite_walk_invisivel = spr_Pwalkcrow;
+sprite_jump_invisivel = spr_Pjumpcrow;
+
+condi_invi = false; // começa a condição como false
+#endregion
+
 #region pad
 checar_portas = function(){
 	var _num_portas = gamepad_get_device_count();

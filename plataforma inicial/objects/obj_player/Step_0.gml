@@ -85,22 +85,54 @@ if(place_meeting(x, y+vspd, obj_block)){
 image_speed = 1;
 if(hspd != 0) image_xscale = sign(hspd);
 
-if(!_onground){
-	sprite_index = spr_playerJump;
-} else{
-	if(hspd != 0){
-		sprite_index = spr_playerWalk;
-	}else {
-		image_index = spr_player;
-	}
+
+if (condi_invi) {
+    if (!_onground) {
+        sprite_index = spr_Pjumpcrow; 
+    } else {
+        if (hspd != 0) {
+            sprite_index = spr_Pwalkcrow; 
+        } else {
+            sprite_index = spr_idlecrow; 
+        }
+    }
+} else {
+    if (!_onground) {
+        sprite_index = spr_playerJump; 
+    } else {
+        if (hspd != 0) {
+            sprite_index = spr_playerWalk; 
+        } else {
+            sprite_index = spr_player; 
+        }
+    }
 }
 
-
 #endregion
+ 
+ #region item
+if place_meeting(x, y, obj_crow) {
+    instance_destroy(obj_crow);
+    
+    condi_invi = true;
+    
+    image_alpha = 0.5;
+}
+ #endregion
+ 
+ #region tira item
+ if place_meeting(x, y, obj_remove) {
+    condi_invi = false; 
+    image_alpha = 1;
+}
+ #endregion
 
 //move
 x += hspd;
 y += vspd;
+
+
+
 
 #region deletar
 
