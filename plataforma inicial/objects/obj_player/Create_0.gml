@@ -14,7 +14,7 @@ grav = 0.47;
 grav_max = 14;
 //jump
 groundbuffer = 12;
-jumpheight = -12;
+jumpheight = -20;
 jumpbuffer = 12;
 jumpheight_min = -3;
 
@@ -59,7 +59,7 @@ controlar = function(){
 	
 }
 controlar_teclado = function(){
-	show_debug_message("tecla")
+	
 }
 
 controlar_controle = function() {
