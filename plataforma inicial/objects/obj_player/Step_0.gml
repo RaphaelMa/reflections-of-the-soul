@@ -6,16 +6,49 @@ var _onground = place_meeting(x, y+ groundbuffer, obj_block);
 
 #endregion
 
-#region inputs
-var _key_left = keyboard_check(vk_left);
-var _key_right = keyboard_check(vk_right);
-var _key_jump = keyboard_check_pressed(vk_up) or gamepad_button_check_pressed(global.porta_conectada, gp_face1);
-var _key_jump_held = keyboard_check(vk_up) or gamepad_button_check(global.porta_conectada, gp_face1);
+#region variáveis de toque
 
+// Variáveis de estado para cada botão
+var _touch_left = false;
+var _touch_right = false;
+var _touch_jump = false;
+
+// Converte a posição de toque para coordenadas da GUI
+for (var touch = 0; touch < 12; touch += 1) {
+    //coordenadas do toque atual
+    var touch_x = device_mouse_x_to_gui(touch);
+    var touch_y = device_mouse_y_to_gui(touch);
+    
+    // Verifica se o toque está ativo para o índice atual
+    if (device_mouse_check_button(touch, mb_left)) {
+        // Botão para mover à esquerda
+        if (touch_x >= 20 && touch_x <= 100 + 100 + 20 && touch_y >= room_height - 150 - 20 && touch_y <= room_height - 150 + 50 + 20) {
+            _touch_left = true;
+        }
+
+        // Botão para mover à direita
+        if (touch_x >= 280 && touch_x <= 350 + 150 + 20 && touch_y >= room_height - 150 - 20 && touch_y <= room_height - 150 + 50 + 20) {
+            _touch_right = true;
+        }
+
+        // Botão de pulo
+        if (touch_x >= 1150 - 20 && touch_x <= 1150 + 150 + 20 && touch_y >= room_height - 160 - 20 && touch_y <= room_height - 220 + 50 + 20) {
+            _touch_jump = true;
+        }
+    }
+}
+#endregion
+
+#region inputs
+var _key_left = keyboard_check(vk_left) || _touch_left;
+var _key_right = keyboard_check(vk_right) || _touch_right;
+var _key_jump = keyboard_check_pressed(vk_up) || _touch_jump || gamepad_button_check_pressed(global.porta_conectada, gp_face1);
+var _key_jump_held = keyboard_check(vk_up) || _touch_jump || gamepad_button_check(global.porta_conectada, gp_face1);
+
+#endregion
 
 var _key_down = keyboard_check(vk_down);
 
-#endregion
 
 #region move
 
@@ -130,8 +163,6 @@ if place_meeting(x, y, obj_crow) {
 //move
 x += hspd;
 y += vspd;
-
-
 
 
 #region deletar
