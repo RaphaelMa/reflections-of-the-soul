@@ -40,8 +40,8 @@ for (var touch = 0; touch < 12; touch += 1) {
 #endregion
 
 #region inputs
-var _key_left = keyboard_check(vk_left) || _touch_left;
-var _key_right = keyboard_check(vk_right) || _touch_right;
+var _key_left = keyboard_check(vk_left) || _touch_left or gamepad_button_check(global.porta_conectada, gp_shoulderlb);
+var _key_right = keyboard_check(vk_right) || _touch_right or gamepad_button_check(global.porta_conectada, gp_shoulderrb)
 var _key_jump = keyboard_check_pressed(vk_up) || _touch_jump || gamepad_button_check_pressed(global.porta_conectada, gp_face1);
 var _key_jump_held = keyboard_check(vk_up) || _touch_jump || gamepad_button_check(global.porta_conectada, gp_face1);
 
