@@ -9,6 +9,7 @@ vspd = 0;
 acel = 0.5;
 decel = 0.6;
 //speeds
+min_hspd = 4;
 max_hspd = 6;
 grav = 0.47;
 grav_max = 14;
@@ -63,7 +64,36 @@ controlar_teclado = function(){
 }
 
 controlar_controle = function() {
-   
+	var _key_left = gamepad_button_check(global.porta_conectada, gp_shoulderlb);
+	var _key_right = gamepad_button_check(global.porta_conectada, gp_shoulderrb);
+
+    hspd = gamepad_axis_value(global.porta_conectada, gp_axislh) * min_hspd;
+	
+	
+	var _dir = _key_right - _key_left;
+
+//horizontal spd
+hspd += _dir*acel;
+
+//slow when no key pressed
+if(_dir == 0){
+	if(hspd < 0){
+		hspd = min(hspd + decel, 0);
+	}else{
+		hspd = max(hspd - decel, 0);
+	}
+}
+
+	hspd = clamp(hspd, -max_hspd, 14);
+	
+	/*if(gamepad_button_check(global.porta_conectada, gp_shoulderlb)){
+		hspd = clamp(hspd, min_hspd, max_hspd);
+	}
+	if((gamepad_button_check(global.porta_conectada, gp_shoulderlb))){
+		
+	} */
+	
+	
 	
 	if(jumpbuffer > 0){
 	jumpbuffer--;
