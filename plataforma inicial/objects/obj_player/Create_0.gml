@@ -63,7 +63,7 @@ controlar_teclado = function(){
 }
 
 controlar_controle = function() {
-    hspd = gamepad_axis_value(global.porta_conectada, gp_axislh) * max_hspd;
+   
 	
 	if(jumpbuffer > 0){
 	jumpbuffer--;
