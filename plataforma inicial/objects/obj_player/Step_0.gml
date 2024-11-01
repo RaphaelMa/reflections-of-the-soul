@@ -130,14 +130,18 @@ if (condi_invi) {
         }
     }
 } else {
-    if (!_onground) {
-        sprite_index = spr_playerJump; 
-    } else {
-        if (hspd != 0) {
-            sprite_index = spr_playerWalk; 
-        } else {
-            sprite_index = spr_player; 
+ if (!_onground) {
+    sprite_index = spr_playerJump;
+} else {
+    if (hspd != 0) {
+        if (abs(hspd) <= 4) {
+            sprite_index = spr_playerWalk;
         }
+        else if (abs(hspd) >= 5) {
+            sprite_index = spr_playerRun;
+        }
+    } else {
+        sprite_index = spr_player;
     }
 }
 
@@ -170,5 +174,6 @@ y += vspd;
 //test (deletar)
 if(keyboard_check_pressed(vk_enter)){
 	game_restart();
+}
 }
 #endregion

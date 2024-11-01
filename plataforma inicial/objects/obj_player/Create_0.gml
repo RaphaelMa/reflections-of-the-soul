@@ -26,6 +26,7 @@ jumpheight_min = -3;
 sprite_idle_normal = spr_player;
 sprite_walk_normal = spr_playerWalk;
 sprite_jump_normal = spr_playerJump;
+sprite_run_normal = spr_playerRun;
 
 sprite_idle_invisivel = spr_idlecrow;
 sprite_walk_invisivel = spr_Pwalkcrow;
