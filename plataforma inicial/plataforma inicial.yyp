@@ -57,6 +57,7 @@
     {"id":{"name":"spr_Pjumpcrow","path":"sprites/spr_Pjumpcrow/spr_Pjumpcrow.yy",},},
     {"id":{"name":"spr_player","path":"sprites/spr_player/spr_player.yy",},},
     {"id":{"name":"spr_playerJump","path":"sprites/spr_playerJump/spr_playerJump.yy",},},
+    {"id":{"name":"spr_playerRun","path":"sprites/spr_playerRun/spr_playerRun.yy",},},
     {"id":{"name":"spr_playerWalk","path":"sprites/spr_playerWalk/spr_playerWalk.yy",},},
     {"id":{"name":"spr_Pwalkcrow","path":"sprites/spr_Pwalkcrow/spr_Pwalkcrow.yy",},},
     {"id":{"name":"spr_remove","path":"sprites/spr_remove/spr_remove.yy",},},
