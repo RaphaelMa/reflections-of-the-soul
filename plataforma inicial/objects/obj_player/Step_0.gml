@@ -51,7 +51,9 @@ var _key_down = keyboard_check(vk_down);
 
 
 #region move
-
+//move
+x += hspd;
+y += vspd;
 
 //direction
 var _dir = _key_right - _key_left;
@@ -119,17 +121,23 @@ image_speed = 1;
 if(hspd != 0) image_xscale = sign(hspd);
 
 
-if (condi_invi) {
-    if (!_onground) {
-        sprite_index = spr_Pjumpcrow; 
-    } else {
-        if (hspd != 0) {
-            sprite_index = spr_Pwalkcrow; 
-        } else {
-            sprite_index = spr_idlecrow; 
-        }
-    }
+if (condi_invi ) {
+	if (!_onground) {
+    sprite_index = spr_playerJump;
 } else {
+    if (hspd != 0) {
+        if (abs(hspd) <= 4) {
+            sprite_index = spr_playerWalk;
+        }
+        else if (abs(hspd) >= 5) {
+            sprite_index = spr_playerRun;
+        }
+    } else {
+        sprite_index = spr_player;
+    }
+}
+}
+else {
  if (!_onground) {
     sprite_index = spr_playerJump;
 } else {
@@ -150,12 +158,14 @@ if (condi_invi) {
  #region item
 if place_meeting(x, y, obj_crow) {
     instance_destroy(obj_crow);
-    
+	
     condi_invi = true;
-    
+	
     image_alpha = 0.5;
 }
+	}
  #endregion
+
  
  #region tira item
  if place_meeting(x, y, obj_remove) {
@@ -164,9 +174,7 @@ if place_meeting(x, y, obj_crow) {
 }
  #endregion
 
-//move
-x += hspd;
-y += vspd;
+
 
 
 #region deletar
@@ -175,5 +183,5 @@ y += vspd;
 if(keyboard_check_pressed(vk_enter)){
 	game_restart();
 }
-}
-#endregion
+
+ #endregion
