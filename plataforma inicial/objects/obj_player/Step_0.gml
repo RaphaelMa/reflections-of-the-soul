@@ -22,17 +22,17 @@ for (var touch = 0; touch < 12; touch += 1) {
     // Verifica se o toque está ativo para o índice atual
     if (device_mouse_check_button(touch, mb_left)) {
         // Botão para mover à esquerda
-        if (touch_x >= 20 && touch_x <= 100 + 100 + 20 && touch_y >= room_height - 150 - 20 && touch_y <= room_height - 150 + 50 + 20) {
+        if (touch_x >= 20 && touch_x <= 100 + 100 + 20 && touch_y >= room_height - 1250 && touch_y <= room_height - 150 + 50 + 20) {
             _touch_left = true;
         }
 
         // Botão para mover à direita
-        if (touch_x >= 280 && touch_x <= 350 + 150 + 20 && touch_y >= room_height - 150 - 20 && touch_y <= room_height - 150 + 50 + 20) {
+        if (touch_x >= 280 && touch_x <= 350 + 150 + 20 && touch_y >= room_height - 1250 && touch_y <= room_height - 150 + 50 + 20) {
             _touch_right = true;
         }
 
         // Botão de pulo
-        if (touch_x >= 1150 - 20 && touch_x <= 1150 + 150 + 20 && touch_y >= room_height - 160 - 20 && touch_y <= room_height - 220 + 50 + 20) {
+        if (touch_x >= 1150 - 20 && touch_x <= 1150 + 150 + 20 && touch_y >= room_height - 1250 && touch_y <= room_height - 220 + 50 + 20) {
             _touch_jump = true;
         }
     }
