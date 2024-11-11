@@ -1,5 +1,5 @@
 var _key_down = keyboard_check(vk_down) or gamepad_button_check(global.porta_conectada, gp_face4);
-var _key_up = keyboard_check(vk_up) or gamepad_button_check(global.porta_conectada, gp_face1);
+var _key_up = keyboard_check(vk_up) or gamepad_button_check(global.porta_conectada, gp_padu);
 var _key_conf = keyboard_check_pressed(vk_enter) or gamepad_button_check_pressed(global.porta_conectada, gp_face3);
 
 
