@@ -9,7 +9,7 @@ vspd = 0;
 acel = 0.5;
 decel = 0.6;
 //speeds
-min_hspd = 4;
+min_hspd = 3;
 max_hspd = 6;
 grav = 0.47;
 grav_max = 14;
@@ -65,34 +65,32 @@ controlar_teclado = function(){
 }
 
 controlar_controle = function() {
+	var _axis_horizontal = gamepad_axis_value(global.porta_conectada, gp_axislh)
 	var _key_left = gamepad_button_check(global.porta_conectada, gp_shoulderlb);
 	var _key_right = gamepad_button_check(global.porta_conectada, gp_shoulderrb);
 
     hspd = gamepad_axis_value(global.porta_conectada, gp_axislh) * min_hspd;
 	
 	
-	var _dir = _key_right - _key_left;
+	var _dir = 0;
+if (_axis_horizontal > 0.5) _dir = 1;
+else if (_axis_horizontal < -0.5) _dir = -1;
 
-//horizontal spd
-hspd += _dir*acel;
+if (gamepad_button_check(global.porta_conectada, gp_shoulderrb) && _dir != 0) {
+    hspd = _dir * max_hspd;
+} else {
+    hspd = round(_axis_horizontal * min_hspd);
 
-//slow when no key pressed
-if(_dir == 0){
-	if(hspd < 0){
-		hspd = min(hspd + decel, 0);
-	}else{
-		hspd = max(hspd - decel, 0);
-	}
+    if (_dir == 0) {
+        if (hspd < 0) {
+            hspd = min(hspd + decel, 0);
+        } else {
+            hspd = max(hspd - decel, 0);
+        }
+    }
 }
 
-	hspd = clamp(hspd, -max_hspd, 14);
-	
-	/*if(gamepad_button_check(global.porta_conectada, gp_shoulderlb)){
-		hspd = clamp(hspd, min_hspd, max_hspd);
-	}
-	if((gamepad_button_check(global.porta_conectada, gp_shoulderlb))){
-		
-	} */
+hspd = clamp(hspd, -max_hspd, max_hspd);
 	
 	
 	
@@ -116,5 +114,25 @@ if(vspd < 0) && (!gamepad_button_check_pressed(global.porta_conectada, gp_face1)
 vspd = clamp(vspd, jumpheight, grav_max);
 }
 
+//horizontal collision
+if (hspd != 0) {
+    if (place_meeting(x + hspd, y, obj_block)) {
+        while (!place_meeting(x + sign(hspd), y, obj_block)) {
+            x += sign(hspd);
+        }
+        hspd = 0;
+    } else {
+        x += hspd;
+    }
+}
+
+//vertical collision
+if(place_meeting(x, y+vspd, obj_block)){
+	var _y = round(y);
+	var _pixel = sign(vspd);
+	while(!place_meeting(x, y+vspd, obj_block)) _y += _pixel;
+	y = _y;
+	vspd = 0;
+}
 #endregion
 
