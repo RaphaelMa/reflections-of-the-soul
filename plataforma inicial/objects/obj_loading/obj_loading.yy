@@ -1,12 +1,12 @@
 {
   "$GMObject":"",
-  "%Name":"obj_camera",
+  "%Name":"obj_loading",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"obj_camera",
+  "name":"obj_loading",
   "overriddenProperties":[],
   "parent":{
     "name":"controle",
@@ -30,7 +30,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"spr_load",
+    "path":"sprites/spr_load/spr_load.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }
